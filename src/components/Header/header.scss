@@ -1,0 +1,115 @@
+@import "../../style/variables";
+
+.header {
+  width: 100vw;
+  height: 5vw;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 14;
+  top: 0;
+  left: 0;
+  .header_main_div {
+    width: 100%;
+    height: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    justify-content: space-between;
+    transition: 1s;
+
+    .logo {
+      width: 14%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .header_navigation {
+      width: 70%;
+      height: 100%;
+      ul {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        align-items: center;
+
+        li {
+          padding-left: 6vw !important;
+          transition: 1s;
+          padding: 1vw;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+.moving_line {
+  height: 0.5vw;
+  border-radius: 1vw;
+  position: absolute;
+  display: none;
+  top: 90%;
+  transition: 0.5s;
+}
+
+.rotating_triangle {
+  font-size: 1.3vw;
+  display: flex;
+  align-items: center;
+  padding-top: 0.5vw;
+  margin-top: 0.3vw;
+  padding-left: 0.2vw;
+  transition: 0.4s;
+}
+
+ul li:first-child:hover ~ .moving_line {
+  width: 4.5vw;
+  display: flex;
+  left: 10%;
+}
+ul li:nth-child(2):hover ~ .moving_line {
+  width: 5vw;
+  display: flex;
+  left: 28.7%;
+  pointer-events: none;
+}
+ul li:nth-child(3):hover ~ .moving_line {
+  width: 5.5vw;
+  display: flex;
+  left: 47.5%;
+}
+ul li:nth-child(4):hover ~ .moving_line {
+  width: 6vw;
+  display: flex;
+  left: 67%;
+}
+
+ul li:nth-child(2):hover .rotating_triangle {
+  transform: rotateX(180deg);
+  transition: 0.4s;
+}
+
+.shop_dropdown {
+  width: 40vw;
+  height: 25vw;
+  display: none;
+  position: absolute;
+  top: 90%;
+  transition: 1s;
+  left: 10%;
+  &:hover{
+    cursor: default;
+  }
+}
+ul li:nth-child(2):hover .shop_dropdown {
+  display: flex;
+}

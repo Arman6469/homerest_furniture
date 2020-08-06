@@ -1,0 +1,46 @@
+.homepage {
+  width: 100vw;
+  box-sizing: border-box;
+  background-color: #eee;
+
+  .homepage_carousel {
+    width: 100%;
+  }
+  .discounted_products {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2vw;
+  }
+  .our_collections {
+    width: 100%;
+    padding-top: 2vw;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    height: 30vw;
+    #collection_2{
+      background-image: url(../../assets/slider_2.jpg);
+    }
+    #collection_3{
+      background-image: url(../../assets/slider_3.jpg);
+    }
+    #collection_4{
+      background-image: url(../../assets/main.jpg);
+    }
+    .our_collection {
+      width: 25%;
+      background-image: url(../../assets/main.jpg);
+      background-size: cover;
+      transition: 0.5s ease-in-out;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      &:hover {
+        width: 40%;
+        transition: 0.5s ease-in-out;
+      }
+    }
+  }
+}
