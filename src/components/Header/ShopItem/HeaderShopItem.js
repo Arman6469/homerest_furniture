@@ -1,10 +1,18 @@
 import React from "react";
 import "./headershopitem.scss";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 
 export default function HeaderShopItem({ item, scrolled }) {
+  const history = useHistory();
+  const category = item.title.replace(/\s+/g, '')
+  
+
+  const historyPush = () => {
+    history.push(`/shop/?category=${category}`);
+  };
   return (
-    <div className="header_shop_item">
+    <div className="header_shop_item" onClick={historyPush}>
       <img src={item.icon} alt={item.title} width="100%" />
       <p
         className={

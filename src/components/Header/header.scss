@@ -52,6 +52,14 @@
     }
   }
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  color: inherit;
+}
 .moving_line {
   height: 0.5vw;
   border-radius: 1vw;
@@ -106,7 +114,7 @@ ul li:nth-child(2):hover .rotating_triangle {
   top: 90%;
   transition: 1s;
   left: 10%;
-  &:hover{
+  &:hover {
     cursor: default;
   }
 }

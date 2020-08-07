@@ -4,8 +4,9 @@ import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import HeaderShopItem from "./ShopItem/HeaderShopItem";
+import { NavLink } from "react-router-dom";
 
-export default function Header({headerShop}) {
+export default function Header({ headerShop }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function Header({headerShop}) {
                   : "font-red font-medium weight-6 "
               }
             >
-              Home
+              <NavLink to="/">Home</NavLink>
             </li>
             <li
               className={
@@ -42,17 +43,28 @@ export default function Header({headerShop}) {
                   : "font-red font-medium weight-6 "
               }
             >
-              Shop{" "}
+              <NavLink to="/shop">Shop</NavLink>
               <div className="rotating_triangle">
                 <FontAwesomeIcon icon={faSortDown} rotation={180} />
               </div>
-              <div className={scrolled ? "shop_dropdown bg-red" : "shop_dropdown bg-whitesmoke"}>
-                {headerShop ? headerShop.map(item => {
-                  return(
-                    <HeaderShopItem key={item.id} item={item} scrolled={scrolled}/>
-                  )
-                }): null}
-              
+              <div
+                className={
+                  scrolled
+                    ? "shop_dropdown bg-red"
+                    : "shop_dropdown bg-whitesmoke"
+                }
+              >
+                {headerShop
+                  ? headerShop.map((item) => {
+                      return (
+                        <HeaderShopItem
+                          key={item.id}
+                          item={item}
+                          scrolled={scrolled}
+                        />
+                      );
+                    })
+                  : null}
               </div>
             </li>
             <li
@@ -62,7 +74,7 @@ export default function Header({headerShop}) {
                   : "font-red font-medium weight-6 "
               }
             >
-              About
+              <NavLink to="/about"> About</NavLink>
             </li>
             <li
               className={
@@ -78,7 +90,6 @@ export default function Header({headerShop}) {
                 scrolled ? "moving_line bg-whitesmoke" : "moving_line bg-red"
               }
             ></div>
-            
           </ul>
         </div>
       </div>
