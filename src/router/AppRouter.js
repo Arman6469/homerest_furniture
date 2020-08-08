@@ -11,24 +11,202 @@ const ShopPage = lazy(() => import("../pages/Shop/ShopPage"));
 
 const mainProducts = [
   {
-    title: "sofa",
+    title: "chair",
     images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "kitchen",
     sale: 0,
-    collection: "kitchen",
+    price: 299,
+    type: "chair",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 0,
   },
   {
-    title: "sofa",
+    title: "table",
     images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "kitchen",
     sale: 0,
-    collection: "kitchen",
+    price: 499,
+    type: "table",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 1,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "kitchen",
+    sale: 20,
+    price: 359,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 2,
+  },
+  {
+    title: "chair",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "kitchen",
+    sale: 0,
+    price: 299,
+    type: "chair",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 3,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "kitchen",
+    sale: 0,
+    price: 499,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 4,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "kitchen",
+    sale: 20,
+    price: 359,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 5,
+  },
+  {
+    title: "chair",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "kitchen",
+    sale: 0,
+    price: 299,
+    type: "chair",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 6,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "kitchen",
+    sale: 0,
+    price: 499,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 7,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "kitchen",
+    sale: 20,
+    price: 359,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 8,
+  },
+  {
+    title: "chair",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 0,
+    price: 299,
+    type: "chair",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 9,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 0,
+    price: 499,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 10,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 20,
+    price: 359,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 11,
+  },
+  {
+    title: "chair",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 0,
+    price: 299,
+    type: "chair",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 12,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 0,
+    price: 499,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 13,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 20,
+    price: 359,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 14,
+  },
+  {
+    title: "chair",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 0,
+    price: 299,
+    type: "chair",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 15,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 0,
+    price: 499,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 16,
+  },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "livingroom",
+    sale: 20,
+    price: 359,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 17,
   },
 ];
 

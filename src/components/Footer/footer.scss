@@ -48,12 +48,12 @@
       border: 1px solid $white;
       padding: 0.7vw;
       border-radius: 1vw;
-      color: $whitesmoke;
+      color: $whitesmoke !important;
       display: flex;
       justify-content: center;
       &:hover {
-        background-color: $white;
-        color: $red;
+        background-color: $white !important;
+        color: $red !important;
         transition: 0.5s;
       }
     }

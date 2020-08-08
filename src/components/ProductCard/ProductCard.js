@@ -17,7 +17,7 @@ export default function ProductCard(props) {
 
   return (
     <div className="product_card">
-      <img src={props.product.image} alt={props.product.id} width="100%" />
+      <img src={props.product.images[0]} alt={props.product.id} width="100%" />
       <h2 className="product_card_title font-red font-large upper ">
         {props.product.title}
       </h2>

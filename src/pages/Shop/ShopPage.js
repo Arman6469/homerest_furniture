@@ -1,28 +1,27 @@
 import React from "react";
 import "./shoppage.scss";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import qs from "query-string";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import SubMenu from '../../components/SubMenu/SubMenu'
 
 export default function ShopPage({ mainProducts }) {
-  console.log(useHistory());
   const query = useLocation();
   const newquery = qs.parse(query.search.replace(/\s+/g, ""));
   const filterdProducts = mainProducts.filter(
     (product) => product.category === newquery.category
   );
-  console.log(filterdProducts);
+  console.log(newquery);
 
   return (
-    <div>
-      {filterdProducts ? filterdProducts.map(product => {
-          return(
-              <div key={product.id}>
-                  <h1>{product.title}</h1>
-                  <h1>{product.category}</h1>
-                  <h1>{product.price}</h1>
-              </div>
-          )
-      }): null}
+    <div className="shop">
+     <SubMenu />
+     <div className="shop_products">
+     {filterdProducts ? filterdProducts.map(product => {
+       return <ProductCard key={product.id} product={product} />
+     }): null}
+     </div>
+     
     </div>
   );
 }

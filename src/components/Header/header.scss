@@ -55,10 +55,12 @@
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: inherit !important;
+  transition:all 0 !important;
 }
 a:hover {
-  color: inherit;
+  color: inherit !important;
+  transition: all 0 !important;
 }
 .moving_line {
   height: 0.5vw;
@@ -76,7 +78,7 @@ a:hover {
   padding-top: 0.5vw;
   margin-top: 0.3vw;
   padding-left: 0.2vw;
-  transition: 0.4s;
+  // transition: 0.1s;
 }
 
 ul li:first-child:hover ~ .moving_line {
