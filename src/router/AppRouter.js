@@ -98,17 +98,17 @@ const mainProducts = [
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 7,
   },
-  {
-    title: "table",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
-    category: "kitchen",
-    sale: 20,
-    price: 359,
-    type: "table",
-    description:
-      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
-    id: 8,
-  },
+  // {
+  //   title: "table",
+  //   images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+  //   category: "kitchen",
+  //   sale: 20,
+  //   price: 359,
+  //   type: "table",
+  //   description:
+  //     "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+  //   id: 8,
+  // },
   {
     title: "chair",
     images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
@@ -214,13 +214,26 @@ const headerShop = [
   {
     title: "kitchen",
     icon: sofa,
-    category: "sofa",
+    category: "kitchen",
+    all: "all",
+    products: [
+      { type: "chair", id: 0 },
+      { type: "table", id: 1 },
+      { type: "placemat", id: 2 },
+    ],
     id: 0,
   },
   {
     title: "living room",
     icon: sofa,
-    category: "sofa",
+    category: "livingroom",
+    all: "all",
+    products: [
+      { type: "sofa", id: 3 },
+      { type: "divan", id: 4 },
+      { type: "chair", id: 5 },
+      { type: "table", id: 6 },
+    ],
     id: 1,
   },
 ];
@@ -233,7 +246,7 @@ export default function AppRouter() {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/shop">
-            <ShopPage mainProducts={mainProducts} />
+            <ShopPage mainProducts={mainProducts} headerShop={headerShop} />
           </Route>
         </Switch>
       </Suspense>

@@ -2,10 +2,15 @@ import React from "react";
 import { Menu } from "antd";
 import "antd/dist/antd.css";
 import "./submenu.scss";
+import { useHistory } from "react-router-dom";
 
 const { SubMenu } = Menu;
 
-export default function SideBar() {
+export default function SideBar({ headerShop }) {
+  const history = useHistory();
+  const changeHistory = (category, type) => {
+    history.push(`/shop/?category=${category}&type=${type}`);
+  };
   return (
     <Menu
       className="sub_menu"
@@ -14,7 +19,40 @@ export default function SideBar() {
       mode={"inline"}
       theme={"light"}
     >
-      <SubMenu key="sub1" title="Kitchen">
+      {headerShop
+        ? headerShop.map((category, index) => {
+            return (
+              <SubMenu
+                key={`sub${index}`}
+                title={category.title}
+                className="font_sub_title"
+              >
+                <Menu.Item
+                  className="bg-gray font_sub_text"
+                  onClick={() =>
+                    history.push(`/shop/?category=${category.category}`)
+                  }
+                >
+                  {category.all}
+                </Menu.Item>
+                {category.products.map((product, i) => {
+                  return (
+                    <Menu.Item
+                      className="bg-gray font_sub_text"
+                      key={product.id}
+                      onClick={() =>
+                        changeHistory(category.category, product.type)
+                      }
+                    >
+                      {product.type}
+                    </Menu.Item>
+                  );
+                })}
+              </SubMenu>
+            );
+          })
+        : null}
+      {/* <SubMenu key="sub1" title="Kitchen">
         <Menu.Item key="3" className="bg-gray">
           Chair
         </Menu.Item>
@@ -35,7 +73,7 @@ export default function SideBar() {
         <Menu.Item key="10" className="bg-gray">
           Option 10
         </Menu.Item>
-      </SubMenu>
+      </SubMenu> */}
     </Menu>
   );
 }
