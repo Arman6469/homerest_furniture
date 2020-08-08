@@ -21,7 +21,7 @@ export default function ProductCard(props) {
       <h2 className="product_card_title font-red font-large upper ">
         {props.product.title}
       </h2>
-      <div className="sale_parent">
+      <div className="sale_parent font-medium">
         {props.product.sale !== 0 ? (
           <div className="product_card_sale_lent font-white font-medium upper">
             sale {props.product.sale}%

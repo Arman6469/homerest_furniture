@@ -1,19 +1,23 @@
-.sub_menu{
-    width: 15%;
-    position: fixed;
-    left: 0;
-    top: 10%;
-    background-color: #eee;
+.sub_menu {
+  width: 15%;
+  position: fixed;
+  left: 0;
+  top: 10%;
+  background-color: #eee;
 }
 
-.bg-gray{
-    background-color: #eee;
-    margin: 0 !important;
+.bg-gray {
+  background-color: #eee;
+  margin: 0 !important;
+  height: 3vw !important;
+  line-height: 3vw !important;
 }
-.font_sub_title{
-    font-size: 1.2vw;
-    text-transform: capitalize;
+.font_sub_title {
+  font-size: 1.2vw;
+  text-transform: capitalize;
 }
-.font_sub_text{
-    font-size: 1.1vw;
+.font_sub_text {
+  padding: 0 !important;
+  font-size: 1.1vw;
+  padding-left: 5.5vw !important;
 }

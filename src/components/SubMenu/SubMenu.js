@@ -13,9 +13,7 @@ export default function SideBar({ headerShop }) {
   };
   return (
     <Menu
-      className="sub_menu"
-      defaultSelectedKeys={["1"]}
-      defaultOpenKeys={["sub1"]}
+      className="sub_menu font_sub_title"
       mode={"inline"}
       theme={"light"}
     >

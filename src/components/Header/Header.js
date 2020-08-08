@@ -27,55 +27,62 @@ export default function Header({ headerShop }) {
         </div>
         <div className="header_navigation">
           <ul>
-            <li
-              className={
-                scrolled
-                  ? "font-whitesmoke font-medium weight-6 "
-                  : "font-red font-medium weight-6 "
-              }
-            >
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li
-              className={
-                scrolled
-                  ? "font-whitesmoke font-medium weight-6 "
-                  : "font-red font-medium weight-6 "
-              }
-            >
-              <NavLink to="/shop">Shop</NavLink>
-              <div className="rotating_triangle">
-                <FontAwesomeIcon icon={faSortDown} rotation={180} />
-              </div>
-              <div
+            <NavLink to="/">
+              <li
                 className={
                   scrolled
-                    ? "shop_dropdown bg-red"
-                    : "shop_dropdown bg-whitesmoke"
+                    ? "font-whitesmoke font-medium weight-6 "
+                    : "font-red font-medium weight-6 "
                 }
               >
-                {headerShop
-                  ? headerShop.map((item) => {
-                      return (
-                        <HeaderShopItem
-                          key={item.id}
-                          item={item}
-                          scrolled={scrolled}
-                        />
-                      );
-                    })
-                  : null}
-              </div>
-            </li>
-            <li
-              className={
-                scrolled
-                  ? "font-whitesmoke font-medium weight-6 "
-                  : "font-red font-medium weight-6 "
-              }
-            >
-              <NavLink to="/about"> About</NavLink>
-            </li>
+                Home
+              </li>
+            </NavLink>
+            <NavLink to="/shop">
+              <li
+                className={
+                  scrolled
+                    ? "font-whitesmoke font-medium weight-6 "
+                    : "font-red font-medium weight-6 "
+                }
+              >
+                Shop
+                <div className="rotating_triangle">
+                  <FontAwesomeIcon icon={faSortDown} rotation={180} />
+                </div>
+                <div
+                  className={
+                    scrolled
+                      ? "shop_dropdown bg-red"
+                      : "shop_dropdown bg-whitesmoke"
+                  }
+                >
+                  {headerShop
+                    ? headerShop.map((item) => {
+                        return (
+                          <HeaderShopItem
+                            key={item.id}
+                            item={item}
+                            scrolled={scrolled}
+                          />
+                        );
+                      })
+                    : null}
+                </div>
+              </li>
+            </NavLink>
+            <NavLink to="/about">
+              <li
+                className={
+                  scrolled
+                    ? "font-whitesmoke font-medium weight-6 "
+                    : "font-red font-medium weight-6 "
+                }
+              >
+                About
+              </li>
+            </NavLink>
+
             <li
               className={
                 scrolled

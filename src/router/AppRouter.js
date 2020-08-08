@@ -1,6 +1,6 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import "../style/style.scss";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
 import HomePage from "../pages/Home/HomePage";
 import rosesofa from "../assets/rosesofa.JPG";
@@ -239,6 +239,10 @@ const headerShop = [
 ];
 
 export default function AppRouter() {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location]);
   return (
     <div>
       <Header headerShop={headerShop} />

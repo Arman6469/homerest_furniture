@@ -56,9 +56,13 @@
 a {
   text-decoration: none;
   color: inherit !important;
-  transition:all 0 !important;
+  transition: all 0 !important;
 }
 a:hover {
+  color: inherit !important;
+  transition: all 0 !important;
+}
+a::after {
   color: inherit !important;
   transition: all 0 !important;
 }
@@ -81,18 +85,18 @@ a:hover {
   // transition: 0.1s;
 }
 
-ul li:first-child:hover ~ .moving_line {
+ul a:first-child:hover ~ .moving_line {
   width: 4.5vw;
   display: flex;
   left: 10%;
 }
-ul li:nth-child(2):hover ~ .moving_line {
+ul a:nth-child(2):hover ~ .moving_line {
   width: 5vw;
   display: flex;
   left: 28.7%;
   pointer-events: none;
 }
-ul li:nth-child(3):hover ~ .moving_line {
+ul a:nth-child(3):hover ~ .moving_line {
   width: 5.5vw;
   display: flex;
   left: 47.5%;
@@ -103,7 +107,7 @@ ul li:nth-child(4):hover ~ .moving_line {
   left: 67%;
 }
 
-ul li:nth-child(2):hover .rotating_triangle {
+ul a:nth-child(2):hover .rotating_triangle {
   transform: rotateX(180deg);
   transition: 0.4s;
 }
@@ -120,6 +124,6 @@ ul li:nth-child(2):hover .rotating_triangle {
     cursor: default;
   }
 }
-ul li:nth-child(2):hover .shop_dropdown {
+ul a:nth-child(2):hover .shop_dropdown {
   display: flex;
 }
