@@ -6,6 +6,11 @@ import HomePage from "../pages/Home/HomePage";
 import rosesofa from "../assets/rosesofa.JPG";
 import sofa from "../assets/sofa.png";
 import Footer from "../components/Footer/Footer";
+import greendivan from "../assets/greendivan.jpeg";
+import bluedivan from "../assets/bluedivan.jpeg";
+import whitesofa from "../assets/whitesofa.jpeg";
+import rosedivan from "../assets/rosedivan.JPG";
+import brownsofa from "../assets/brownsofa.JPG";
 
 const ShopPage = lazy(() => import("../pages/Shop/ShopPage"));
 
@@ -23,7 +28,7 @@ const mainProducts = [
   },
   {
     title: "table",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [brownsofa, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "kitchen",
     sale: 0,
     price: 499,
@@ -34,7 +39,7 @@ const mainProducts = [
   },
   {
     title: "table",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [whitesofa, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "kitchen",
     sale: 20,
     price: 359,
@@ -56,11 +61,11 @@ const mainProducts = [
   },
   {
     title: "table",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [rosedivan, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "kitchen",
     sale: 0,
     price: 499,
-    type: "table",
+    type: "divan",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 4,
@@ -78,7 +83,7 @@ const mainProducts = [
   },
   {
     title: "chair",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [whitesofa, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "kitchen",
     sale: 0,
     price: 299,
@@ -89,33 +94,33 @@ const mainProducts = [
   },
   {
     title: "table",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [greendivan, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "kitchen",
     sale: 0,
     price: 499,
-    type: "table",
+    type: "divan",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 7,
   },
-  // {
-  //   title: "table",
-  //   images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
-  //   category: "kitchen",
-  //   sale: 20,
-  //   price: 359,
-  //   type: "table",
-  //   description:
-  //     "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
-  //   id: 8,
-  // },
+  {
+    title: "table",
+    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    category: "kitchen",
+    sale: 20,
+    price: 359,
+    type: "table",
+    description:
+      "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
+    id: 8,
+  },
   {
     title: "chair",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [bluedivan, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "livingroom",
     sale: 0,
     price: 299,
-    type: "chair",
+    type: "sofa",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 9,
@@ -126,14 +131,14 @@ const mainProducts = [
     category: "livingroom",
     sale: 0,
     price: 499,
-    type: "table",
+    type: "chair",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 10,
   },
   {
     title: "table",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [rosedivan, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "livingroom",
     sale: 20,
     price: 359,
@@ -144,44 +149,44 @@ const mainProducts = [
   },
   {
     title: "chair",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [greendivan, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "livingroom",
     sale: 0,
     price: 299,
-    type: "chair",
+    type: "sofa",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 12,
   },
   {
     title: "table",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [bluedivan, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "livingroom",
     sale: 0,
     price: 499,
-    type: "table",
+    type: "divan",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 13,
   },
   {
     title: "table",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [brownsofa, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "livingroom",
     sale: 20,
     price: 359,
-    type: "table",
+    type: "divan",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 14,
   },
   {
     title: "chair",
-    images: [rosesofa, rosesofa, rosesofa, rosesofa, rosesofa],
+    images: [whitesofa, rosesofa, rosesofa, rosesofa, rosesofa],
     category: "livingroom",
     sale: 0,
     price: 299,
-    type: "chair",
+    type: "sofa",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 15,
@@ -192,7 +197,7 @@ const mainProducts = [
     category: "livingroom",
     sale: 0,
     price: 499,
-    type: "table",
+    type: "sofa",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 16,
@@ -203,7 +208,7 @@ const mainProducts = [
     category: "livingroom",
     sale: 20,
     price: 359,
-    type: "table",
+    type: "sofa",
     description:
       "piti vor lini piti vor lini piti vor lini piti vor lini piti vor lini",
     id: 17,
@@ -217,8 +222,8 @@ const headerShop = [
     category: "kitchen",
     all: "all",
     products: [
-      { type: "chair", id: 0 },
-      { type: "table", id: 1 },
+      { type: "chair", id: 8 },
+      { type: "table", id: 12 },
       { type: "placemat", id: 2 },
     ],
     id: 0,

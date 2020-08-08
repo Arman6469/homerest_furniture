@@ -13,7 +13,7 @@ export default function ShopPage({ mainProducts, headerShop }) {
       ? product.type === newquery.type
       : product.category === newquery.category
   );
-  console.log(newquery);
+  
 
   return (
     <div className="shop">

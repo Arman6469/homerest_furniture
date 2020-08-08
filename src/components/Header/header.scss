@@ -122,8 +122,9 @@ ul a:nth-child(2):hover .rotating_triangle {
   left: 10%;
   &:hover {
     cursor: default;
+    display: flex;
   }
 }
-ul a:nth-child(2):hover .shop_dropdown {
+ul a:nth-child(2):hover ~ .shop_dropdown {
   display: flex;
 }

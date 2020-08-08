@@ -7,26 +7,24 @@ import { useHistory } from "react-router-dom";
 const { SubMenu } = Menu;
 
 export default function SideBar({ headerShop }) {
-  const history = useHistory();
+  const history = useHistory()
   const changeHistory = (category, type) => {
     history.push(`/shop/?category=${category}&type=${type}`);
   };
+
   return (
-    <Menu
-      className="sub_menu font_sub_title"
-      mode={"inline"}
-      theme={"light"}
-    >
+    <Menu className="sub_menu font_sub_title" mode={"inline"} theme={"light"}>
       {headerShop
-        ? headerShop.map((category, index) => {
+        ? headerShop.map((category) => {
             return (
               <SubMenu
-                key={`sub${index}`}
+                key={`sub${category.id}`}
                 title={category.title}
                 className="font_sub_title"
               >
                 <Menu.Item
                   className="bg-gray font_sub_text"
+                  key={category.id}
                   onClick={() =>
                     history.push(`/shop/?category=${category.category}`)
                   }
@@ -50,28 +48,6 @@ export default function SideBar({ headerShop }) {
             );
           })
         : null}
-      {/* <SubMenu key="sub1" title="Kitchen">
-        <Menu.Item key="3" className="bg-gray">
-          Chair
-        </Menu.Item>
-        <Menu.Item key="4" className="bg-gray">
-          Table
-        </Menu.Item>
-      </SubMenu>
-      <SubMenu key="sub2" title="Navigation Three">
-        <Menu.Item key="7" className="bg-gray">
-          Option 7
-        </Menu.Item>
-        <Menu.Item key="8" className="bg-gray">
-          Option 8
-        </Menu.Item>
-        <Menu.Item key="9" className="bg-gray">
-          Option 9
-        </Menu.Item>
-        <Menu.Item key="10" className="bg-gray">
-          Option 10
-        </Menu.Item>
-      </SubMenu> */}
     </Menu>
   );
 }

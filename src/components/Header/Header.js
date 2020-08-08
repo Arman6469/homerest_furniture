@@ -50,27 +50,27 @@ export default function Header({ headerShop }) {
                 <div className="rotating_triangle">
                   <FontAwesomeIcon icon={faSortDown} rotation={180} />
                 </div>
-                <div
-                  className={
-                    scrolled
-                      ? "shop_dropdown bg-red"
-                      : "shop_dropdown bg-whitesmoke"
-                  }
-                >
-                  {headerShop
-                    ? headerShop.map((item) => {
-                        return (
-                          <HeaderShopItem
-                            key={item.id}
-                            item={item}
-                            scrolled={scrolled}
-                          />
-                        );
-                      })
-                    : null}
-                </div>
               </li>
             </NavLink>
+            <div
+              className={
+                scrolled
+                  ? "shop_dropdown bg-red"
+                  : "shop_dropdown bg-whitesmoke"
+              }
+            >
+              {headerShop
+                ? headerShop.map((item) => {
+                    return (
+                      <HeaderShopItem
+                        key={item.id}
+                        item={item}
+                        scrolled={scrolled}
+                      />
+                    );
+                  })
+                : null}
+            </div>
             <NavLink to="/about">
               <li
                 className={
