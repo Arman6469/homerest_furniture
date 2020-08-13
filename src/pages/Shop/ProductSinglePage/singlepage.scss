@@ -1,0 +1,67 @@
+@import "../../../style/variables";
+
+.single_page {
+  width: 100%;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  box-sizing: border-box;
+  display: flex;
+    margin-top: 10vw;
+  .single_page_main_image {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 1;
+    .current_slide {
+      width: 100%;
+      position: relative;
+    }
+    .slider-button-left {
+      @extend %btn-styles;
+      left: 0;
+    }
+    .slider-button-right {
+      @extend %btn-styles;
+      right: 0;
+    }
+    .single_slider_images {
+      width: 100%;
+      display: flex;
+      padding-top: 1.5vw;
+      justify-content: space-between;
+      .single_slider_image {
+        box-sizing: border-box;
+        width: 14vw;
+      }
+    }
+  }
+
+  .single_page_description {
+    width: 45%;
+    background-color: $red;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding-left: 2vw;
+  }
+}
+
+%btn-styles {
+  position: absolute;
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  font-size: 2vw;
+  z-index: 15;
+  top: 0;
+  color: $red;
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -2,18 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./productcard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export default function ProductCard(props) {
-  const [newprice, setNewPrice] = useState(0);
-  useEffect(() => {
-    if (props.product.sale !== 0) {
-      setNewPrice(
-        Math.ceil(
-          props.product.price - (props.product.price * props.product.sale) / 100
-        )
-      );
-    }
-  }, []);
+  
 
   return (
     <div className="product_card">
@@ -32,11 +24,16 @@ export default function ProductCard(props) {
         <span className={props.product.sale === 0 ? null : "underline"}>
           {props.product.price}$
         </span>{" "}
-        {newprice !== 0 ? newprice + "$" : null}
+        {props.product.newprice !== 0 ? props.product.newprice + "$" : null}
       </p>
-      <div className="product_card_cart">
-        <FontAwesomeIcon icon={faShoppingCart} className="shopping_cart_icon" />
-      </div>
+      <Link to={`/product/${props.product._id}`}>
+        <div className="product_card_cart">
+          <FontAwesomeIcon
+            icon={faShoppingCart}
+            className="shopping_cart_icon"
+          />
+        </div>
+      </Link>
     </div>
   );
 }

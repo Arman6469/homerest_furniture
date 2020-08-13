@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 export default function HeaderShopItem({ item, scrolled }) {
   const history = useHistory();
   const category = item.category;
+ 
 
   const historyPush = () => {
     history.push(`/shop/?category=${category}`);

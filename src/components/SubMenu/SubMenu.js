@@ -6,41 +6,41 @@ import { useHistory } from "react-router-dom";
 
 const { SubMenu } = Menu;
 
-export default function SideBar({ headerShop }) {
-  const history = useHistory()
+export default function SideBar({ headerItems }) {
+  const history = useHistory();
   const changeHistory = (category, type) => {
     history.push(`/shop/?category=${category}&type=${type}`);
   };
 
   return (
     <Menu className="sub_menu font_sub_title" mode={"inline"} theme={"light"}>
-      {headerShop
-        ? headerShop.map((category) => {
+      {headerItems
+        ? headerItems.map((category) => {
             return (
               <SubMenu
-                key={`sub${category.id}`}
+                key={`sub${category._id}`}
                 title={category.title}
                 className="font_sub_title"
               >
                 <Menu.Item
                   className="bg-gray font_sub_text"
-                  key={category.id}
+                  key={category._id}
                   onClick={() =>
                     history.push(`/shop/?category=${category.category}`)
                   }
                 >
                   {category.all}
                 </Menu.Item>
-                {category.products.map((product, i) => {
+                {category.products.map((product) => {
                   return (
                     <Menu.Item
                       className="bg-gray font_sub_text"
-                      key={product.id}
+                      key={product._id}
                       onClick={() =>
-                        changeHistory(category.category, product.type)
+                        changeHistory(category.category, product.furtype)
                       }
                     >
-                      {product.type}
+                      {product.furtype}
                     </Menu.Item>
                   );
                 })}

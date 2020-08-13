@@ -6,7 +6,7 @@ import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import HeaderShopItem from "./ShopItem/HeaderShopItem";
 import { NavLink } from "react-router-dom";
 
-export default function Header({ headerShop }) {
+export default function Header({ headerItems }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function Header({ headerShop }) {
         setScrolled(false);
       }
     });
-  });
+  }, []);
 
   return (
     <div className="header">
@@ -59,11 +59,11 @@ export default function Header({ headerShop }) {
                   : "shop_dropdown bg-whitesmoke"
               }
             >
-              {headerShop
-                ? headerShop.map((item) => {
+              {headerItems
+                ? headerItems.map((item) => {
                     return (
                       <HeaderShopItem
-                        key={item.id}
+                        key={item._id}
                         item={item}
                         scrolled={scrolled}
                       />
@@ -82,16 +82,18 @@ export default function Header({ headerShop }) {
                 About
               </li>
             </NavLink>
+            <NavLink to="/contact">
+              <li
+                className={
+                  scrolled
+                    ? "font-whitesmoke font-medium weight-6 "
+                    : "font-red font-medium weight-6 "
+                }
+              >
+                Contact
+              </li>
+            </NavLink>
 
-            <li
-              className={
-                scrolled
-                  ? "font-whitesmoke font-medium weight-6 "
-                  : "font-red font-medium weight-6 "
-              }
-            >
-              Contact
-            </li>
             <div
               className={
                 scrolled ? "moving_line bg-whitesmoke" : "moving_line bg-red"

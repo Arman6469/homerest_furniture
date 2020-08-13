@@ -6,9 +6,11 @@ import * as serviceWorker from "./serviceWorker";
 import AppRouter from "./router/AppRouter";
 
 ReactDOM.render(
-  <BrowserRouter>
+ 
+    <BrowserRouter>
     <AppRouter />
-  </BrowserRouter>,
+  </BrowserRouter>
+ ,
   document.getElementById("root")
 );
 
