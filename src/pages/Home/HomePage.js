@@ -30,22 +30,23 @@ const multiSliderImages = [
 ];
 
 export default function HomePage() {
-  useEffect(() => {
-    fetcheSaledProducts();
-  }, []);
+  
   const [productsonsale, setProductOnSale] = useState([]);
 
   const fetcheSaledProducts = async () => {
     try {
       const data = await fetch("/products/sale");
       const fetchedData = await data.json();
-      console.log(fetchedData);
       setProductOnSale(fetchedData);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(productsonsale);
+
+  useEffect(() => {
+    fetcheSaledProducts();
+  }, []);
+ 
   return (
     <div className="homepage flex-column">
       <section className="homepage_carousel">

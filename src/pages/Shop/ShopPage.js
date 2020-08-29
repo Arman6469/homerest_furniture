@@ -1,38 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "./shoppage.scss";
 import { useLocation } from "react-router-dom";
 import qs from "query-string";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import SubMenu from "../../components/SubMenu/SubMenu";
-import { useEffect } from "react";
+import { connect } from "react-redux";
 
-export default function ShopPage({ mainProducts, headerItems }) {
+function ShopPage(props) {
   const [products, setProducts] = useState([]);
   const query = useLocation();
-  const newquery = qs.parse(query.search.replace(/\s+/g, ""));
-  
+  const newquery = useMemo(() => qs.parse(query.search.replace(/\s+/g, "")), [
+    query,
+  ]);
 
-  const filtering = () => {
-    if (!Object.entries(newquery).length) {
-      setProducts(mainProducts);
-    } else {
-      const filteredProducts = mainProducts.filter((product) =>
-        product.category === newquery.category && newquery.type
-          ? product.type === newquery.type
-          : product.category === newquery.category
-      );
-      setProducts(filteredProducts);
-    }
-  };
+
   useEffect(() => {
-    filtering();
-  }, [query]);
- 
+    if (props.data) {
+      if (!Object.entries(newquery).length) {
+        setProducts(props.data);
+      } else {
+        const filteredProducts = props.data.filter(
+          (product) =>
+            (!newquery.category || product.category === newquery.category) &&
+            (!newquery.type || product.type === newquery.type)
+        );
+        setProducts(filteredProducts);
+      }
+    }
+  }, [newquery, props.data]);
   return (
-    <div className="shop">
-      <SubMenu headerItems={headerItems} />
+    <div className="shop pt-7">
+      <SubMenu
+        headerItems={props.headerItems}
+        current={props.current}
+        currentAll={props.currentAll}
+        setCurrentAll={props.setCurrentAll}
+        setCurrent={props.setCurrent}
+      />
       <div className="shop_products">
-        {products
+        {products.length
           ? products.map((product) => {
               return <ProductCard key={product._id} product={product} />;
             })
@@ -41,3 +47,11 @@ export default function ShopPage({ mainProducts, headerItems }) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    data: state.fetchData.products,
+  };
+};
+
+export default connect(mapStateToProps)(ShopPage);

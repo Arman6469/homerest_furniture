@@ -23,7 +23,7 @@ router.get("/product/:id", async (req, res) => {
 router.get("/sale", async (req, res) => {
   try {
     const data = await Product.find().sort("sale");
-    data.reverse();
+    data.reverse();       
     res.send(data);
   } catch (error) {
     res.status(400).send({ message: "Something went wrong" });

@@ -1,19 +1,18 @@
-.shop{
-    position: relative;
-    width: 100%;
-    padding-left: 15%;
+.shop {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .shop_products {
+    width: 83%;
     display: flex;
-    justify-content: center;
-    margin-bottom: 55vw;
-    .shop_products{
-        width:95%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-top: 5vw;
-    }
+    flex-wrap: wrap;
+    height: 100%;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    justify-content: space-between;
+  }
 }
-
-a{
-    transition: all 0 !important;
+a {
+  transition: all 0 !important;
 }

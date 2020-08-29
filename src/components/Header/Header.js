@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./header.scss";
 import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { faSortDown, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import HeaderShopItem from "./ShopItem/HeaderShopItem";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function Header({ headerItems }) {
+function Header(props) {
   const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 0) {
@@ -59,13 +59,15 @@ export default function Header({ headerItems }) {
                   : "shop_dropdown bg-whitesmoke"
               }
             >
-              {headerItems
-                ? headerItems.map((item) => {
+              {props.headerItems
+                ? props.headerItems.map((item) => {
                     return (
                       <HeaderShopItem
                         key={item._id}
                         item={item}
                         scrolled={scrolled}
+                        setCurrent={props.setCurrent}
+                        setCurrentAll={props.setCurrentAll}
                       />
                     );
                   })
@@ -93,6 +95,31 @@ export default function Header({ headerItems }) {
                 Contact
               </li>
             </NavLink>
+            <NavLink to="/mycart">
+              <li
+                className={
+                  scrolled
+                    ? "font-whitesmoke font-large header_cart"
+                    : "font-red font-large header_cart"
+                }
+              >
+                <FontAwesomeIcon icon={faShoppingCart} />
+                <div
+                  className={
+                    scrolled
+                      ? "bg-whitesmoke font-red  cart_counter"
+                      : "bg-red font-whitesmoke cart_counter"
+                  }
+                  style={
+                    Object.keys(props.cartItemsID).length !== 0
+                      ? { opacity: 1 }
+                      : { opacity: 0 }
+                  }
+                >
+                  {Object.keys(props.cartItemsID).length}
+                </div>
+              </li>
+            </NavLink>
 
             <div
               className={
@@ -105,3 +132,11 @@ export default function Header({ headerItems }) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    cartArray: state.addToCart,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

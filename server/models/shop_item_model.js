@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-ObjectId = Schema.ObjectId
-
+ObjectId = Schema.ObjectId;
 
 const ShopItem = new Schema({
   title: {
@@ -11,7 +10,13 @@ const ShopItem = new Schema({
     min: 2,
     required: true,
   },
-  icon: {
+  red_icon: {
+    type: String,
+    max: 100,
+    min: 2,
+    required: true,
+  },
+  white_icon: {
     type: String,
     max: 100,
     min: 2,
@@ -23,18 +28,17 @@ const ShopItem = new Schema({
     min: 2,
     required: true,
   },
-  all: {
+  image: {
     type: String,
-    max: 100,
-    min: 1,
     required: true,
   },
+
+  all: [{ alltype: String }],
   products: [
     {
       furtype: String,
-    }
-  ]
+    },
+  ],
 });
 
-
-module.exports = mongoose.model("ShopItem", ShopItem)
+module.exports = mongoose.model("ShopItem", ShopItem);

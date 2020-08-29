@@ -6,14 +6,36 @@ import { useHistory } from "react-router-dom";
 
 const { SubMenu } = Menu;
 
-export default function SideBar({ headerItems }) {
+export default function SideBar({
+  headerItems,
+  current,
+  currentAll,
+  setCurrent,
+  setCurrentAll,
+}) {
   const history = useHistory();
-  const changeHistory = (category, type) => {
+  const changeHistory = (category, type, id) => {
     history.push(`/shop/?category=${category}&type=${type}`);
+    setCurrentAll(id);
+  };
+
+  const allClicked = (category, id) => {
+    history.push(`/shop/?category=${category}`);
+    setCurrentAll(id);
+  };
+  const subMenuClicked = (id) => {
+    console.log("hello world");
+    setCurrent(id);
   };
 
   return (
-    <Menu className="sub_menu font_sub_title" mode={"inline"} theme={"light"}>
+    <Menu
+      className="sub_menu font_sub_title"
+      mode={"inline"}
+      theme={"light"}
+      openKeys={[`sub${current}`]}
+      selectedKeys={[currentAll]}
+    >
       {headerItems
         ? headerItems.map((category) => {
             return (
@@ -21,15 +43,16 @@ export default function SideBar({ headerItems }) {
                 key={`sub${category._id}`}
                 title={category.title}
                 className="font_sub_title"
+                onTitleClick={() => subMenuClicked(category._id)}
               >
                 <Menu.Item
                   className="bg-gray font_sub_text"
-                  key={category._id}
+                  key={category.all[0]._id}
                   onClick={() =>
-                    history.push(`/shop/?category=${category.category}`)
+                    allClicked(category.category, category.all[0]._id)
                   }
                 >
-                  {category.all}
+                  {category.all[0].alltype}
                 </Menu.Item>
                 {category.products.map((product) => {
                   return (
@@ -37,7 +60,11 @@ export default function SideBar({ headerItems }) {
                       className="bg-gray font_sub_text"
                       key={product._id}
                       onClick={() =>
-                        changeHistory(category.category, product.furtype)
+                        changeHistory(
+                          category.category,
+                          product.furtype,
+                          product._id
+                        )
                       }
                     >
                       {product.furtype}

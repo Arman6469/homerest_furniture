@@ -84,6 +84,24 @@ a::after {
   padding-left: 0.2vw;
 }
 
+.header_cart {
+  position: relative;
+  .cart_counter {
+    width: 1.2vw;
+    height: 1.2vw;
+    transition: inherit;
+
+    border-radius: 50%;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    font-size: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 ul a:first-child:hover ~ .moving_line {
   width: 4.5vw;
   display: flex;
@@ -112,13 +130,15 @@ ul a:nth-child(2):hover .rotating_triangle {
 }
 
 .shop_dropdown {
-  width: 40vw;
-  height: 25vw;
+  width: 50vw;
   display: none;
   position: absolute;
   top: 90%;
   transition: 1s;
-  left: 10%;
+  left: 3%;
+  padding-top: 1vw;
+  padding-bottom: 2.5vw;
+  box-sizing: border-box;
   &:hover {
     cursor: default;
     display: flex;

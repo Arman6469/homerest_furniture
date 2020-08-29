@@ -5,34 +5,70 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
+  faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
-export default function ProductSinglePage() {
+export default function ProductSinglePage({ cartItemsID, setCartItemsID }) {
+  const { setItem, getItem } = useLocalStorage();
+
+  const [count, setCount] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [product, setProduct] = useState({});
+
   const productId = useParams().id;
 
   useEffect(() => {
     fetchSingle(productId);
   }, [productId]);
 
-  const [item, setItem] = useState({});
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
   const swap = useCallback(
     (num) => {
-      item.images?.length &&
+      product.images?.length &&
         setCurrentSlide(
-          (aImg) => (aImg + num + item.images?.length) % item.images?.length
+          (aImg) =>
+            (aImg + num + product.images?.length) % product.images?.length
         );
     },
-    [item.images]
+    [product.images]
   );
+
+  const decrementCount = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
+  const incrementCount = () => {
+    setCount(count + 1);
+  };
+
+  const addToCart = (id, count) => {
+    const copy = cartItemsID[id] ? cartItemsID[id] : undefined;
+    if (copy === undefined) {
+      const newCartItemsID = { ...cartItemsID, [id]: count };
+      setCartItemsID(newCartItemsID);
+      setItem("cartItems", newCartItemsID);
+    } else {
+      const newCartItemsID = { ...cartItemsID, [id]: count + copy };
+      setCartItemsID(newCartItemsID);
+      setItem("cartItems", newCartItemsID);
+    }
+  };
+
+  const deleteItem = (id) => {
+    if (cartItemsID[id]) {
+      delete cartItemsID[id];
+      const newProducts = { ...cartItemsID };
+      setCartItemsID(newProducts);
+      setItem("cartItems", newProducts);
+    }
+  };
 
   const fetchSingle = async (id) => {
     try {
       const data = await fetch(`/products/product/${id}`);
       const fetchedData = await data.json();
-      setItem(fetchedData);
+      setProduct(fetchedData);
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +79,9 @@ export default function ProductSinglePage() {
       <div className="single_page_main_image">
         <div className="current_slide">
           <img
-            src={item.images?.length > 0 ? item.images[currentSlide] : null}
+            src={
+              product.images?.length > 0 ? product.images[currentSlide] : null
+            }
             alt="main"
             width="100%"
           />
@@ -56,8 +94,8 @@ export default function ProductSinglePage() {
         </div>
 
         <div className="single_slider_images">
-          {item.images?.length > 0
-            ? item.images.map((image, index) => {
+          {product.images?.length > 0
+            ? product.images.map((image, index) => {
                 return (
                   <div
                     className="single_slider_image"
@@ -73,17 +111,41 @@ export default function ProductSinglePage() {
       </div>
 
       <div className="single_page_description">
-        <h2 className="font-large upper font-whitesmoke">{item.title}</h2>
-        <p className="font-medium font-whitesmoke">
-          Price:
-          <span className={item.sale === 0 ? null : "underline"}>
-            {item.price}$
+        <h2 className="font-h1 upper font-whitesmoke mt-2">{product.title}</h2>
+        <h4 className="font-medium font-whitesmoke weight-6 mt-5">Price</h4>
+        <p className="font-medium font-whitesmoke weight-7 padding-left1 max-width80">
+          <span className={product.sale === 0 ? null : "underline"}>
+            {product.price}$
           </span>
-          {item.newprice !== 0 ? item.newprice + "$" : null}
+          <span className="margin-left-1">
+            {product.newprice !== 0 ? product.newprice + "$" : null}
+          </span>
         </p>
-        <p className="font-medium font-whitesmoke">
-          Description: {item.description}
+
+        <h4 className="font-medium font-whitesmoke weight-6 mt-5">
+          Description
+        </h4>
+        <p className="font-desc font-whitesmoke padding-left1 max-width80">
+          {product.description}
         </p>
+
+        <div className="jsc width-100">
+          <div className="shop_count_button" onClick={decrementCount}>
+            -
+          </div>
+          <div className="shop_count">
+            {count}
+          </div>
+          <div className="shop_count_button" onClick={incrementCount}>
+            +
+          </div>
+          <div
+            className="add_to_cart_button"
+            onClick={() => addToCart(product._id, count)}
+          >
+            <FontAwesomeIcon icon={faShoppingCart} />
+          </div>
+        </div>
       </div>
     </div>
   );
