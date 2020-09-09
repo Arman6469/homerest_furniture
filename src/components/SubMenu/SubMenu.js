@@ -24,7 +24,6 @@ export default function SideBar({
     setCurrentAll(id);
   };
   const subMenuClicked = (id) => {
-    console.log("hello world");
     setCurrent(id);
   };
 

@@ -1,14 +1,25 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "./cartpage.scss";
 import { connect } from "react-redux";
-import { useEffect } from "react";
-import CartItem from "../../components/CartItem/CartItem";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import OrderForm from "../../components/OrderForm/OrderForm";
 
 function CartPage(props) {
   const [cartProducts, setCartProducts] = useState([]);
-  console.log(cartProducts);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const { setItem } = useLocalStorage();
+
+  useEffect(() => {
+    let gin = 0;
+    for (let i = 0; i < cartProducts.length; i++) {
+      gin += cartProducts[i].totalPrice;
+    }
+    setTotalPrice(gin);
+  }, [cartProducts]);
+
   useEffect(() => {
     if (props.data) {
+      setCartProducts([]);
       props.data.map((product) => {
         if (props.cartItemsID[product._id]) {
           setCartProducts((prev) => {
@@ -25,9 +36,29 @@ function CartPage(props) {
         return null;
       });
     }
-  }, [props.data]);
+  }, [props.data, props.cartItemsID]);
+
+  const plusItem = (id, count) => {
+    const newCartItemsID = { ...props.cartItemsID, [id]: count + 1 };
+    props.setCartItemsID(newCartItemsID);
+    setItem("cartItems", newCartItemsID);
+  };
+  const minusItem = (id, count) => {
+    const newCartItemsID = { ...props.cartItemsID, [id]: count - 1 };
+    props.setCartItemsID(newCartItemsID);
+    setItem("cartItems", newCartItemsID);
+  };
+  const deleteItem = (id) => {
+    if (props.cartItemsID[id]) {
+      delete props.cartItemsID[id];
+      const newProducts = { ...props.cartItemsID };
+      props.setCartItemsID(newProducts);
+      setItem("cartItems", newProducts);
+    }
+  };
+
   return (
-    <div className="width-100 pt-7 flex-column">
+    <div className="width-100 pt-7 flex-column px-1 border-box">
       <div className="flex width-100">
         <table className="ui celled table width-75">
           <thead>
@@ -38,7 +69,7 @@ function CartPage(props) {
               <th className="width-25">Price</th>
             </tr>
           </thead>
-          {cartProducts ? (
+          {cartProducts.length > 0 ? (
             cartProducts.map((item) => {
               return (
                 <tbody key={item._id}>
@@ -51,28 +82,81 @@ function CartPage(props) {
                         width="100%"
                       />
                     </td>
-                    <td data-label="Age" className="height-100 font-large jscac capitalize">
+                    <td
+                      data-label="Title"
+                      className="height-100 font-large font-red jscac capitalize"
+                    >
                       {item.title}
                     </td>
-                    <td data-label="Age" className="">
-                      {item.count}
+                    <td data-label="Count" className="">
+                      <div className="jsc width-100">
+                        <div
+                          className={
+                            item.count === 1
+                              ? "cart_count_button disabled"
+                              : "cart_count_button"
+                          }
+                          onClick={() => minusItem(item._id, item.count)}
+                        >
+                          -
+                        </div>
+                        <div className="cart_count">{item.count}</div>
+                        <div
+                          className="cart_count_button"
+                          onClick={() => plusItem(item._id, item.count)}
+                        >
+                          +
+                        </div>
+                        <div
+                          className="ui vertical animated button standart ml-2"
+                          tabIndex="0"
+                          onClick={() => deleteItem(item._id)}
+                        >
+                          <div className="hidden content">Remove</div>
+                          <div className="visible content">
+                            <i className="trash icon"></i>
+                          </div>
+                        </div>
+                      </div>
                     </td>
-                    <td data-label="Job" className="">
-                      {item.totalPrice}$
+                    <td
+                      data-label="totalPrice"
+                      className="font-medium font-red"
+                    >
+                      <div className="w-100 jscac">{item.totalPrice}$</div>
                     </td>
                   </tr>
                 </tbody>
               );
             })
           ) : (
-            <p>There is not items here yet</p>
+            <tbody>
+              <tr>
+                <td>
+                  <div className="jsc  width-100">
+                    <h1 className="font-small font-red">
+                      There is not products in your cart yet
+                    </h1>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
           )}
         </table>
 
-        <div className="width-25">
-          <p>hello wrold</p>
+        <div className="width-25 flex-column">
+          <p className="font-small font-red weight-6">
+            Shipping in Armenia is FREE
+          </p>
+          <p className="font-medium font-red weight-8 capitalize mt-3">
+            Total Price
+          </p>
+          <p className="font-medium font-red weight-7">{totalPrice}$</p>
+          <p className="font-small font-red weight-6 mt-3">Paymanent cash</p>
         </div>
       </div>
+
+      {cartProducts.length > 0 ? <OrderForm cartProducts={cartProducts} /> : null}
     </div>
   );
 }

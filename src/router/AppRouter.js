@@ -4,6 +4,7 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
 import HomePage from "../pages/Home/HomePage";
 import Footer from "../components/Footer/Footer";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { requestApiData } from "../redux/actions";
@@ -17,7 +18,7 @@ const SinglePage = lazy(() =>
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 
 function AppRouter(props) {
-  const {setItem,getItem} = useLocalStorage()
+  const {getItem} = useLocalStorage()
   const [current, setCurrent] = useState("");
   const [currentAll, setCurrentAll] = useState("");
   const [cartItemsID, setCartItemsID] = useState(getItem("cartItems") || {});
@@ -35,7 +36,7 @@ function AppRouter(props) {
         setCurrentAll={setCurrentAll}
         cartItemsID={cartItemsID}
       />
-      <Suspense fallback={<h2>component is loading...</h2>}>
+      <Suspense fallback={<h1></h1>}>
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/shop">

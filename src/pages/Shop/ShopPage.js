@@ -5,47 +5,96 @@ import qs from "query-string";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import SubMenu from "../../components/SubMenu/SubMenu";
 import { connect } from "react-redux";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import { Pagination } from "../../components/Pagination/Pagination";
+import Loading from "../../components/Loading/Loading";
 
 function ShopPage(props) {
   const [products, setProducts] = useState([]);
   const query = useLocation();
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
   const newquery = useMemo(() => qs.parse(query.search.replace(/\s+/g, "")), [
     query,
   ]);
+  const [elNumInPage] = useState(9);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsInPage = useMemo(() => {
+    return products?.length
+      ? products.slice(
+          (currentPage - 1) * elNumInPage,
+          elNumInPage * currentPage
+        )
+      : [];
+  }, [products, elNumInPage, currentPage]);
 
-
+  useEffect(() => {
+    if (props.data && props.data.length > 0) {
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+  }, [props.data]);
   useEffect(() => {
     if (props.data) {
       if (!Object.entries(newquery).length) {
-        setProducts(props.data);
+        if (search) {
+          setProducts(
+            props.data.filter((product) => product.title.includes(search))
+          );
+        } else {
+          setProducts(props.data);
+        }
       } else {
         const filteredProducts = props.data.filter(
           (product) =>
             (!newquery.category || product.category === newquery.category) &&
             (!newquery.type || product.type === newquery.type)
         );
-        setProducts(filteredProducts);
+        if (search) {
+          setProducts(
+            filteredProducts.filter((product) => product.title.includes(search))
+          );
+        } else {
+          setProducts(filteredProducts);
+        }
       }
     }
-  }, [newquery, props.data]);
-  return (
-    <div className="shop pt-7">
-      <SubMenu
-        headerItems={props.headerItems}
-        current={props.current}
-        currentAll={props.currentAll}
-        setCurrentAll={props.setCurrentAll}
-        setCurrent={props.setCurrent}
-      />
-      <div className="shop_products">
-        {products.length
-          ? products.map((product) => {
-              return <ProductCard key={product._id} product={product} />;
-            })
-          : null}
+  }, [newquery, props.data, search]);
+
+  const renderPage = () => {
+    if (loading) return <Loading />;
+    return (
+      <div className="flex-column w-100">
+        <div className="shop pt-7">
+          <SubMenu
+            headerItems={props.headerItems}
+            current={props.current}
+            currentAll={props.currentAll}
+            setCurrentAll={props.setCurrentAll}
+            setCurrent={props.setCurrent}
+          />
+          <div className="flex-column w-83">
+            <SearchBar setSearch={setSearch} />
+            <div className="shop_products">
+              {productsInPage.length
+                ? productsInPage.map((product) => {
+                    return <ProductCard key={product._id} product={product} />;
+                  })
+                : null}
+            </div>
+          </div>
+        </div>
+
+        <Pagination
+          length={Math.ceil(products.length / elNumInPage)}
+          handleChange={(page) => setCurrentPage(page)}
+        />
       </div>
-    </div>
-  );
+    );
+  };
+
+  return renderPage();
 }
 
 const mapStateToProps = (state) => {

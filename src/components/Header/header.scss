@@ -123,6 +123,11 @@ ul a:nth-child(5):hover ~ .moving_line {
   display: flex;
   left: 67.8%;
 }
+ul a:nth-child(6):hover ~ .moving_line{
+  width: 3vw;
+  display: flex;
+  left: 89%;
+}
 
 ul a:nth-child(2):hover .rotating_triangle {
   transform: rotateX(180deg);

@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const Product = require("../models/product_model");
+const nodemailer = require("nodemailer");
+
 
 router.get("/", async (req, res) => {
   try {
@@ -67,5 +69,8 @@ router.patch("/product/:id", async (req, res) => {
     res.status(400).send({ message: "Something went wrong" });
   }
 });
+
+
+  
 
 module.exports = router;

@@ -5,18 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
-  faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import Loading from '../../../components/Loading/Loading'
 
 export default function ProductSinglePage({ cartItemsID, setCartItemsID }) {
-  const { setItem, getItem } = useLocalStorage();
-
+  const { setItem } = useLocalStorage();
+  const [loading, setLoading] = useState(true);
   const [count, setCount] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [product, setProduct] = useState({});
 
   const productId = useParams().id;
+
 
   useEffect(() => {
     fetchSingle(productId);
@@ -55,27 +56,21 @@ export default function ProductSinglePage({ cartItemsID, setCartItemsID }) {
     }
   };
 
-  const deleteItem = (id) => {
-    if (cartItemsID[id]) {
-      delete cartItemsID[id];
-      const newProducts = { ...cartItemsID };
-      setCartItemsID(newProducts);
-      setItem("cartItems", newProducts);
-    }
-  };
-
   const fetchSingle = async (id) => {
     try {
       const data = await fetch(`/products/product/${id}`);
       const fetchedData = await data.json();
       setProduct(fetchedData);
+      setLoading(false)
     } catch (error) {
       console.log(error);
     }
   };
 
-  return (
-    <div className="single_page">
+  const renderPage = () => {
+    if (loading) return <Loading />;
+    return (
+      <div className="single_page">
       <div className="single_page_main_image">
         <div className="current_slide">
           <img
@@ -129,24 +124,32 @@ export default function ProductSinglePage({ cartItemsID, setCartItemsID }) {
           {product.description}
         </p>
 
-        <div className="jsc width-100">
+        <div className="jscac width-100">
           <div className="shop_count_button" onClick={decrementCount}>
             -
           </div>
-          <div className="shop_count">
-            {count}
-          </div>
+          <div className="shop_count">{count}</div>
           <div className="shop_count_button" onClick={incrementCount}>
             +
           </div>
+
           <div
-            className="add_to_cart_button"
+            className="ui vertical animated button standart ml-2"
+            tabIndex="0"
             onClick={() => addToCart(product._id, count)}
           >
-            <FontAwesomeIcon icon={faShoppingCart} />
+            <div className="hidden content">Shop</div>
+            <div className="visible content">
+              <i className="shop icon"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    )
+  }
+
+  return (
+    renderPage()
   );
 }

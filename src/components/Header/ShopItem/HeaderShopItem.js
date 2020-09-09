@@ -1,7 +1,6 @@
 import React from "react";
 import "./headershopitem.scss";
 import { useHistory } from "react-router-dom";
-import mainimage from "../../../assets/main.jpg";
 
 export default function HeaderShopItem({
   item,
