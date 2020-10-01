@@ -2,6 +2,9 @@
 
 .pagination {
   margin-top: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .pagination-item {
     height: 2vw;
     background: transparent;
@@ -23,5 +26,14 @@
 
   .border-circle {
     border-radius: 0.3vw;
+  }
+}
+
+
+@media only screen and (max-width: 800px){
+  .pagination-item{
+    height: 4vw !important;
+    width: 4vw !important;
+    font-size: 3vw !important;
   }
 }

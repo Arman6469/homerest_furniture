@@ -10,13 +10,7 @@
   width: 70%;
 }
 
-.registration_title {
-  font-size: 3vw;
-  margin: 0;
-  color: $red;
-  padding-bottom: 4vw;
-  padding-top: 2vw;
-}
+
 .signup_main_part {
   display: flex;
   flex-direction: column;
@@ -37,7 +31,8 @@ form {
   display: flex;
   flex-direction: column;
 }
-.submit_button_order {
+.submit_button {
+  
   padding-top: 0.5vw;
   padding-bottom: 0.5vw;
   padding-left: 3vw;
@@ -58,10 +53,6 @@ form {
   }
 }
 
-.order_inputs {
-  padding: 0.7vw !important;
-}
-
 .login_link {
   color: rgb(29, 238, 10);
   transition: 0.4s;
@@ -73,27 +64,42 @@ form {
   transition: 0.4s;
 }
 
-@media only screen and (max-width: 800px) {
-  .form_input {
+.contact_inputs{
+  padding: 0.7vw !important;
+}
+
+
+.contact_textarea{
+    border-radius: 0.5vw;
+    border-color: whitesmoke;
+    padding: 0.5vw;
+    outline: none;
+}
+.contact_textarea::placeholder{
+    opacity: 0.6;
+}
+
+
+@media only screen and (max-width: 800px){
+  .form_input{
     width: 100% !important;
   }
-  .order_inputs {
-    font-size: 2.5vw !important;
+  .contact_inputs{
+    font-size: 3vw !important;
   }
-
-  .submit_button_order {
+  .contact_textarea{
+    font-size: 3vw !important;
+  }
+  .submit_button{
     padding-top: 1vw !important;
-    padding-bottom: 1vw !important;
+    padding-bottom:1vw !important;
     padding-left: 4vw !important;
     padding-right: 4vw !important;
     font-size: 2.5vw !important;
   }
-  .registration_title {
-    font-size: 6vw !important;
-    padding-top: 5vw !important;
-  }
 }
 
-.swal-text {
+
+.swal-text{
   text-align: center !important;
 }

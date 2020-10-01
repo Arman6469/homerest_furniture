@@ -25,7 +25,7 @@
       align-items: center;
     }
     .header_navigation {
-      width: 70%;
+      width: 77%;
       height: 100%;
       ul {
         position: relative;
@@ -103,30 +103,30 @@ a::after {
 }
 
 ul a:first-child:hover ~ .moving_line {
-  width: 4.5vw;
+  width: 6.3vw;
   display: flex;
   left: 10%;
 }
 ul a:nth-child(2):hover ~ .moving_line {
-  width: 5vw;
+  width: 6.5vw;
   display: flex;
-  left: 28.7%;
+  left: 31.5%;
   pointer-events: none;
 }
 ul a:nth-child(4):hover ~ .moving_line {
-  width: 5.5vw;
+  width: 7.6vw;
   display: flex;
-  left: 48% !important;
+  left: 53.8% !important;
 }
 ul a:nth-child(5):hover ~ .moving_line {
-  width: 6vw;
+  width: 4vw;
   display: flex;
-  left: 67.8%;
+  left: 77.5%;
 }
-ul a:nth-child(6):hover ~ .moving_line{
+ul a:nth-child(6):hover ~ .moving_line {
   width: 3vw;
   display: flex;
-  left: 89%;
+  left: 94%;
 }
 
 ul a:nth-child(2):hover .rotating_triangle {
@@ -151,4 +151,41 @@ ul a:nth-child(2):hover .rotating_triangle {
 }
 ul a:nth-child(2):hover ~ .shop_dropdown {
   display: flex;
+}
+
+.font-cart {
+  font-size: 1.5vw;
+}
+
+@media only screen and (max-width: 800px) {
+  .shop_dropdown {
+    width: 60vw !important;
+  }
+  .header {
+    .header_main_div {
+      .header_navigation {
+        ul {
+          li {
+            padding-left: 4vw !important;
+          }
+        }
+      }
+    }
+  }
+
+  .cart_counter {
+    width: 2vw !important;
+    height: 2vw !important;
+    font-size: 2vw !important;
+  }
+  .font-cart {
+    font-size: 3.2vw !important;
+  }
+  .rotating_triangle {
+    font-size: 1.8vw;
+  }
+  .header_main_div {
+    padding-left: 1vw !important;
+    padding-right: 1vw !important;
+  }
 }

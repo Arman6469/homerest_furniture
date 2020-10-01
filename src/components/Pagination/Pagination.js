@@ -1,28 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import "./pagination.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useCallback } from "react";
 
-export const Pagination = ({ length, handleChange }) => {
+export const Pagination = ({ length, handleChange, active, setActive }) => {
   const ScrollUp = () => {
-    window.scrollTo({ top: "200", behavior: "smooth" });
+    window.scrollTo({ top: "0", behavior: "smooth" });
   };
+  const location = useLocation();
 
-  const [active, setActive] = useState(1);
-  const change = (num) => {
-    if (num > length || num < 1) return;
-    setActive(num);
-    handleChange(num);
-    ScrollUp();
-  };
+  const change = useCallback(
+    (num) => {
+      if (num > length || num < 1) return;
+      setActive(num);
+      handleChange(num);
+      ScrollUp();
+    },
+    [handleChange, length, setActive]
+  );
+
+  useEffect(() => {
+    change(active);
+  }, [location, active, change]);
 
   return length <= 1 ? (
     " "
   ) : (
-    <div className="jscac pagination ">
+    <div className=" pagination ">
       <div
         className="pagination-item jscac font-bb bg-yellow font-white jscac "
         onClick={() => change(active - 1)}

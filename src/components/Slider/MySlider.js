@@ -1,34 +1,42 @@
-import React from "react";
+import React, { useState, useRef, useCallback , useMemo, useEffect} from "react";
 import "./slider.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Slider({ sliderImages }) {
-  const [position, setPosition] = React.useState(0);
+export default function MySlider({ sliderImages }) {
+  const [activeElem, setActiveElem] = useState(0);
 
-  const sliderTimer = () => {
-    position === -100 * (sliderImages.length - 1)
-      ? setPosition(0)
-      : setPosition(position - 100);
-  };
+  const S = useRef();
+  const swap = useCallback(
+    (num) => {
+      sliderImages?.length &&
+        setActiveElem(
+          (aImg) =>
+            (aImg + num + sliderImages?.length) % sliderImages?.length
+        );
+      clearInterval(S.current);
+      S.current = setInterval(() => swap(1), 4000);
+    },
+    [sliderImages]
+  );
+  if (activeElem === sliderImages.length - 6) {
+    setActiveElem(0);
+  }
+  const position = useMemo(() => activeElem * -100, [activeElem]);
 
-  const timeout = setTimeout(sliderTimer, 3000);
   const goRight = () => {
-    clearTimeout(timeout);
-    position === -100 * (sliderImages.length - 1)
-      ? setPosition(0)
-      : setPosition(position - 100);
+    swap(1);
   };
   const goLeft = () => {
-    clearTimeout(timeout);
-    position === 0
-      ? setPosition(-100 * (sliderImages.length - 1))
-      : setPosition(position + 100);
+    swap(-1);
   };
+  useEffect(() => {
+    S.current = setInterval(() => swap(1), 4000);
+    return () => clearInterval(S.current);
+  }, [swap]);
 
   return (
     <div style={{ position: "relative" }}>

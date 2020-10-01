@@ -124,7 +124,7 @@ export default function ProductSinglePage({ cartItemsID, setCartItemsID }) {
           {product.description}
         </p>
 
-        <div className="jscac width-100">
+        <div className="plus_minus_buttons width-100">
           <div className="shop_count_button" onClick={decrementCount}>
             -
           </div>

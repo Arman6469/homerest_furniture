@@ -68,8 +68,31 @@
 
 .ant-menu-submenu-title .ant-menu-submenu-arrow::after{
   color: $red !important;
-  
 }
-.ant-menu-submenu-title .ant-menu-submenu-arrow::before{
 
+
+@media only screen and (max-width: 800px){
+  .sub_menu{
+    width: 27%;
+    
+  }
+  .font_sub_title{
+    font-size: 2vw !important;
+  }
+  .font_sub_text{
+    font-size: 1.8vw !important;
+  }
+  .bg-gray{
+    height: 5vw !important;
+    line-height: 5vw !important;
+  }
+  .ant-menu-submenu-title .ant-menu-submenu-arrow {
+    right: 0% !important;
+  }
+}
+
+@media only screen and (max-width: 450px){
+  .ant-menu-submenu-title .ant-menu-submenu-arrow{
+    right: -10% !important;
+  }
 }

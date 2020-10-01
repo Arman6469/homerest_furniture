@@ -1,6 +1,6 @@
 @import "../../style/variables";
 .product_card {
-  width: 32%;
+  width: 100%;
   height: 18vw;
   background-color: #fff;
   display: flex;
@@ -65,10 +65,35 @@
     }
   }
 }
+.product_card_all_link{
+  width: 32%;
+}
+
+.product_image{
+  width: 85%;
+}
 .underline {
   text-decoration: line-through;
 }
 
-a:hover{
+a:hover {
   cursor: default;
+}
+
+@media only screen and (max-width: 800px) {
+  .product_card_all_link{
+    width: 70% !important;
+  }
+  .product_card {
+    height: 30vw;
+    &:hover .product_card_cart {
+      left: 89% !important;
+    }
+  }
+  .product_card_cart {
+    top: 82% !important;
+  }
+  .product_card_price {
+    font-size: 2vw !important;
+  }
 }

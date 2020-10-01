@@ -12,6 +12,7 @@ export default function SideBar({
   currentAll,
   setCurrent,
   setCurrentAll,
+  setActive,
 }) {
   const history = useHistory();
   const changeHistory = (category, type, id) => {
@@ -19,9 +20,16 @@ export default function SideBar({
     setCurrentAll(id);
   };
 
+  const showAll = () => {
+    history.push("/shop");
+    setCurrentAll("all");
+    setActive(1);
+  };
+
   const allClicked = (category, id) => {
     history.push(`/shop/?category=${category}`);
     setCurrentAll(id);
+    setActive(1);
   };
   const subMenuClicked = (id) => {
     setCurrent(id);
@@ -35,6 +43,9 @@ export default function SideBar({
       openKeys={[`sub${current}`]}
       selectedKeys={[currentAll]}
     >
+      <Menu.Item className="font_sub_title bg-gray" key={"all"} onClick={showAll}>
+        All
+      </Menu.Item>
       {headerItems
         ? headerItems.map((category) => {
             return (

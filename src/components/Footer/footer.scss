@@ -1,10 +1,7 @@
 @import "../../style/variables";
 .footer {
   width: 100%;
-  height: 12vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding-top: 2vw;
   overflow: hidden;
   margin-top: 2vw;
   background-color: $red;
@@ -28,40 +25,20 @@
       }
     }
   }
-  .footer_contact {
-    width: 55%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  
+  
+}
+
+
+.footer_link_hover{
+  transition: 0.3s;
+  opacity: 0.8;
+  &:hover{
+    opacity: 1;
+    transition: 0.3s;
   }
-  .footer_map {
-    width: 45%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    .footer_get_location {
-        margin-left: 40%;
-      width: 30%;
-      font-size: 1.2vw;
-      border: 1px solid $white;
-      padding: 0.7vw;
-      border-radius: 1vw;
-      color: $whitesmoke !important;
-      display: flex;
-      justify-content: center;
-      &:hover {
-        background-color: $white !important;
-        color: $red !important;
-        transition: 0.5s;
-      }
-    }
-    .footer_location_text{
-        margin-left: 34.5%;
-        max-width: 40%;
-        text-align: center;
-        margin-top: 0.5vw;
-    }
-  }
+}
+
+.pointer:hover{
+  cursor: pointer;
 }

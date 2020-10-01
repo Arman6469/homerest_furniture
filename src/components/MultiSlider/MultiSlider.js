@@ -6,14 +6,13 @@ import React, {
   useEffect,
 } from "react";
 import "./multislider.scss";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Slider({ multiSliderImages }) {
+export default function MultiSlider({ multiSliderImages }) {
   const [activeElem, setActiveElem] = useState(0);
 
   const S = useRef();
@@ -59,7 +58,6 @@ export default function Slider({ multiSliderImages }) {
               style={{ transform: `translateX(${position}%)` }}
             >
               <img src={image.image} alt="nkar" style={{ width: "40%" }} />
-              <p className="font-black upper font-medium weight-5">{image.title}</p>
             </div>
           );
         })}

@@ -35,7 +35,7 @@ function Header(props) {
                     : "font-red font-medium weight-6 "
                 }
               >
-                Home
+                Գլխավոր
               </li>
             </NavLink>
             <NavLink to="/shop">
@@ -45,8 +45,9 @@ function Header(props) {
                     ? "font-whitesmoke font-medium weight-6 "
                     : "font-red font-medium weight-6 "
                 }
+                onClick={() => props.setCurrentAll("all")}
               >
-                Shop
+                Խանութ
                 <div className="rotating_triangle">
                   <FontAwesomeIcon icon={faSortDown} rotation={180} />
                 </div>
@@ -81,7 +82,7 @@ function Header(props) {
                     : "font-red font-medium weight-6 "
                 }
               >
-                About
+                Մեր Մասին
               </li>
             </NavLink>
             <NavLink to="/contact">
@@ -92,15 +93,15 @@ function Header(props) {
                     : "font-red font-medium weight-6 "
                 }
               >
-                Contact
+                Կապ
               </li>
             </NavLink>
             <NavLink to="/mycart">
               <li
                 className={
                   scrolled
-                    ? "font-whitesmoke font-large header_cart"
-                    : "font-red font-large header_cart"
+                    ? "font-whitesmoke font-cart header_cart"
+                    : "font-red font-cart header_cart"
                 }
               >
                 <FontAwesomeIcon icon={faShoppingCart} />

@@ -20,3 +20,13 @@ a {
 .w-83{
   width: 83%;
 }
+
+
+@media only screen and (max-width: 800px){
+  .shop_products{
+    justify-content: center !important;
+  }
+  .w-83{
+    width: 73%;
+  }
+}

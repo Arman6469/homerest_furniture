@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import "./OrderForm.scss";
+import "./contactform.scss";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Error from "./Error/Error";
+import Error from "../OrderForm/Error/Error";
 import ReCAPTCHA from "react-google-recaptcha";
 import swal from "sweetalert";
 
@@ -11,39 +11,31 @@ const validationSchema = Yup.object().shape({
     .email("Must b a valid email address")
     .max(30, "Must be shorter than 30")
     .required("required"),
-  adress: Yup.string()
-    .min(6, "Must be more than 6 letters")
-    .required("required"),
+  text: Yup.string().required("required"),
   firstname: Yup.string().required("required"),
   lastname: Yup.string().required("required"),
-  phone: Yup.string()
-    .required()
-    .matches(/^[0-9+]+$/, "Must be only digits")
-    .min(12, "Must be exactly 12 symbols")
-    .max(12, "Must be exactly 12 sybmols")
-    .required("required"),
 });
 
-export default function OrderForm({ cartProducts }) {
+export default function ContactForm() {
   const myRef = useRef();
 
   const sendEmail = async (values) => {
     const token = await myRef.current.executeAsync();
-
-    const mail = { ...values, products: [...cartProducts], token };
-
     try {
-      const data = await fetch("/email/sendmail", {
+      const data = await fetch("/email/contactmail", {
         method: "POST",
         headers: { "Content-Type": " application/json" },
-        body: JSON.stringify(mail),
+        body: JSON.stringify({
+          email: values.email,
+          lastname: values.lastname,
+          firstname: values.firstname,
+          text: values.text,
+          token: token,
+        }),
       });
       const fetchedData = await data.json();
       if (fetchedData.message) {
-        swal("Ուռաա՜🤩", fetchedData.message, "success").then(function () {
-          localStorage.clear();
-          window.location.reload();
-        });
+        swal("Ուռաա՜🤩", fetchedData.message, "success");
       } else if (fetchedData.error) {
         swal("Վայ😕, Ինչ որ բան այն չէ🧐", fetchedData.error, "warning");
       }
@@ -56,14 +48,13 @@ export default function OrderForm({ cartProducts }) {
     <section className="signup_main_section">
       <div className="signup_form">
         <div className="signup_main_part">
-          <h2 className="registration_title">Check Out</h2>
+          <h2 className="font-red font-h1 mb-2 pt-7 capitalize">Կապ մեզ հետ</h2>
           <Formik
             initialValues={{
               firstname: "",
               lastname: "",
               email: "",
-              phone: "",
-              adress: "",
+              text: "",
             }}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -92,8 +83,8 @@ export default function OrderForm({ cartProducts }) {
                   <input
                     id="firstname"
                     name="firstname"
+                    className="contact_inputs"
                     type="text"
-                    className="order_inputs"
                     placeholder="Enter your firstname"
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -114,8 +105,8 @@ export default function OrderForm({ cartProducts }) {
                   <input
                     id="lastname"
                     name="lastname"
+                    className="contact_inputs"
                     type="text"
-                    className="order_inputs"
                     placeholder="Enter your lastname"
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -133,8 +124,8 @@ export default function OrderForm({ cartProducts }) {
                   <input
                     id="email"
                     name="email"
+                    className="contact_inputs"
                     type="email"
-                    className="order_inputs"
                     placeholder="Enter your email: Example  example@example.com"
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -142,43 +133,26 @@ export default function OrderForm({ cartProducts }) {
                   />
                   <Error touched={touched.email} message={errors.email} />
                 </div>
+
                 <div
                   className={
-                    touched.phone && errors.phone
+                    touched.text && errors.text
                       ? "error ui large input form_input"
                       : "ui input large form_input"
                   }
                 >
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="text"
-                    className="order_inputs"
-                    placeholder="Enter your phone number: Example  +37400000000"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.phone}
-                  />
-                  <Error touched={touched.phone} message={errors.phone} />
-                </div>
-                <div
-                  className={
-                    touched.adress && errors.adress
-                      ? "error ui large input form_input"
-                      : "ui input large form_input"
-                  }
-                >
-                  <input
-                    id="adress"
-                    name="adress"
-                    type="adress"
-                    className="order_inputs"
+                  <textarea
+                    id="text"
+                    name="text"
+                    cols="40"
+                    rows="5"
+                    className="contact_textarea"
                     placeholder="Enter your address"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    value={values.adress}
-                  />
-                  <Error touched={touched.adress} message={errors.adress} />
+                    value={values.text}
+                  ></textarea>
+                  <Error touched={touched.text} message={errors.text} />
                 </div>
                 <ReCAPTCHA
                   sitekey={process.env.REACT_APP_PUBLIC_RECAPTCHA_KEY}
@@ -186,10 +160,10 @@ export default function OrderForm({ cartProducts }) {
                   ref={myRef}
                 />
                 <button
-                  className="submit_button_order font-small weight-7"
+                  className="submit_button font-small weight-7"
                   type="submit"
                 >
-                  Check Out
+                  Ուղարկել
                 </button>
               </form>
             )}

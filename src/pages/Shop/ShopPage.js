@@ -8,9 +8,11 @@ import { connect } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { Pagination } from "../../components/Pagination/Pagination";
 import Loading from "../../components/Loading/Loading";
+import Dropdown from "../../components/Dropdown/Dropdown";
 
 function ShopPage(props) {
   const [products, setProducts] = useState([]);
+  const [active, setActive] = useState(1);
   const query = useLocation();
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -28,6 +30,7 @@ function ShopPage(props) {
       : [];
   }, [products, elNumInPage, currentPage]);
 
+  
   useEffect(() => {
     if (props.data && props.data.length > 0) {
       setLoading(false);
@@ -73,9 +76,13 @@ function ShopPage(props) {
             currentAll={props.currentAll}
             setCurrentAll={props.setCurrentAll}
             setCurrent={props.setCurrent}
+            setActive={setActive}
           />
           <div className="flex-column w-83">
-            <SearchBar setSearch={setSearch} />
+            <div className="jscac">
+              <Dropdown products={products} setProducts={setProducts} setActive={setActive}/>
+              <SearchBar setSearch={setSearch} setActive={setActive} />
+            </div>
             <div className="shop_products">
               {productsInPage.length
                 ? productsInPage.map((product) => {
@@ -89,6 +96,8 @@ function ShopPage(props) {
         <Pagination
           length={Math.ceil(products.length / elNumInPage)}
           handleChange={(page) => setCurrentPage(page)}
+          active={active}
+          setActive={setActive}
         />
       </div>
     );

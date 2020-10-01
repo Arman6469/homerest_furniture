@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 
 export default function ProductCard(props) {
   return (
-    <div className="product_card">
-      <Link to={`/product/${props.product._id}`}>
+    <Link to={`/product/${props.product._id}`} className="product_card_all_link">
+      <div className="product_card">
         <img
           src={props.product.images[0]}
           alt={props.product.id}
-          width="100%"
+          className="product_image"
         />
         <h2 className="product_card_title font-red font-large upper ">
           {props.product.title}
@@ -36,7 +36,7 @@ export default function ProductCard(props) {
             className="shopping_cart_icon"
           />
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }

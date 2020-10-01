@@ -53,7 +53,10 @@
 .font-h1 {
   margin: 0;
   font-size: 3vw;
-  letter-spacing: 0.1em;
+}
+.font-xl {
+  margin: 0;
+  font-size: 3.7vw;
 }
 .weight-5 {
   font-weight: 500;
@@ -66,6 +69,9 @@
 }
 .weight-8 {
   font-weight: 800;
+}
+.text-center {
+  text-align: center;
 }
 
 .flex {
@@ -94,6 +100,9 @@
   flex-direction: column;
   align-items: flex-end;
 }
+.align-start {
+  align-items: flex-start;
+}
 .pos-relative {
   position: relative;
 }
@@ -103,7 +112,7 @@
   align-items: center;
   justify-content: center;
 }
-.flex-column-no{
+.flex-column-no {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,7 +161,7 @@
 .mt-2 {
   margin-top: 1vw !important;
 }
-.mt-3{
+.mt-3 {
   margin-top: 2vw !important;
 }
 .mt-5 {
@@ -170,6 +179,19 @@
 .ml-5 {
   margin-left: 5vw;
 }
+.mx-05 {
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+}
+.mb-1 {
+  margin-bottom: 1vw;
+}
+.mb-2 {
+  margin-bottom: 2vw;
+}
+.mb-5 {
+  margin-bottom: 5vw;
+}
 
 .p-05 {
   padding: 0.5vw;
@@ -183,13 +205,69 @@
 .pt-7 {
   padding-top: 7vw;
 }
+.pb-footer {
+  padding-bottom: 30vw;
+}
 .px-1 {
   padding-left: 1vw;
   padding-right: 1vw;
 }
+.px-03 {
+  padding-left: 0.3vw;
+  padding-right: 0.3vw;
+}
 .letter-spacing-007 {
   letter-spacing: 0.07vw;
 }
-.border-box{
+.border-box {
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .font-small {
+    font-size: 1.5vw;
+  }
+  .font-medium {
+    font-size: 2vw;
+  }
+  .font-large{
+    font-size: 2.9vw;
+    font-weight: 700;
+  }
+  .font-h1{
+    font-size: 4vw;
+  }
+  .font-xl{
+    font-size: 4.5vw;
+  }
+  .flex-evenly {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .jsc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .jscac {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .jse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }

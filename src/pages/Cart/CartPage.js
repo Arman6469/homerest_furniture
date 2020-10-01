@@ -58,7 +58,13 @@ function CartPage(props) {
   };
 
   return (
-    <div className="width-100 pt-7 flex-column px-1 border-box">
+    <div
+      className={
+        cartProducts.length > 1
+          ? "width-100 pt-7 flex-column px-1 border-box"
+          : "width-100 pt-7 flex-column px-1 border-box pb-footer"
+      }
+    >
       <div className="flex width-100">
         <table className="ui celled table width-75">
           <thead>
@@ -74,7 +80,7 @@ function CartPage(props) {
               return (
                 <tbody key={item._id}>
                   <tr className="width-100">
-                    <td data-label="Name" className="">
+                    <td data-label="Name" >
                       {" "}
                       <img
                         src={item.images[0]}
@@ -88,8 +94,8 @@ function CartPage(props) {
                     >
                       {item.title}
                     </td>
-                    <td data-label="Count" className="">
-                      <div className="jsc width-100">
+                    <td data-label="Count" >
+                      <div className="cart_plus_minus width-100">
                         <div
                           className={
                             item.count === 1
@@ -108,11 +114,11 @@ function CartPage(props) {
                           +
                         </div>
                         <div
-                          className="ui vertical animated button standart ml-2"
+                          className="ui vertical animated button standart ml-2 remove_button"
                           tabIndex="0"
                           onClick={() => deleteItem(item._id)}
                         >
-                          <div className="hidden content">Remove</div>
+                          <div className="hidden content">Ջնջել</div>
                           <div className="visible content">
                             <i className="trash icon"></i>
                           </div>
@@ -123,7 +129,7 @@ function CartPage(props) {
                       data-label="totalPrice"
                       className="font-medium font-red"
                     >
-                      <div className="w-100 jscac">{item.totalPrice}$</div>
+                      <div className="w-100 jscac font-medium-cart">{item.totalPrice}$</div>
                     </td>
                   </tr>
                 </tbody>
@@ -134,7 +140,7 @@ function CartPage(props) {
               <tr>
                 <td>
                   <div className="jsc  width-100">
-                    <h1 className="font-small font-red">
+                    <h1 className="font-small-cart font-red">
                       There is not products in your cart yet
                     </h1>
                   </div>
@@ -144,19 +150,24 @@ function CartPage(props) {
           )}
         </table>
 
-        <div className="width-25 flex-column">
-          <p className="font-small font-red weight-6">
+        <div className="width-25-cart flex-column">
+          <p className="font-small-cart font-red weight-6">
             Shipping in Armenia is FREE
           </p>
-          <p className="font-medium font-red weight-8 capitalize mt-3">
+          <p className="font-medium-cart font-red weight-8 capitalize mt-3">
             Total Price
           </p>
-          <p className="font-medium font-red weight-7">{totalPrice}$</p>
-          <p className="font-small font-red weight-6 mt-3">Paymanent cash</p>
+          <p className="font-medium-cart font-red weight-7">{totalPrice}$</p>
+          <p className="font-small-cart font-red weight-6 mt-3">Paymanent cash</p>
         </div>
       </div>
 
-      {cartProducts.length > 0 ? <OrderForm cartProducts={cartProducts} /> : null}
+      {cartProducts.length > 0 ? (
+        <OrderForm
+          cartProducts={cartProducts}
+          setCartProducts={setCartProducts}
+        />
+      ) : null}
     </div>
   );
 }

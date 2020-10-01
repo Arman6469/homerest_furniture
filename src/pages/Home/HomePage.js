@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import "./homepage.scss";
 import MySlider from "../../components/Slider/MySlider";
-import slider_2 from "../../assets/slider_2.jpg";
-import slider_3 from "../../assets/slider_3.jpg";
-import main from "../../assets/main.jpg";
+import slider_2 from "../../assets/7.jpg";
+import slider_3 from "../../assets/8.jpg";
+import main from "../../assets/baby.jpg";
 import bed from "../../assets/bed.png";
 import bedroom from "../../assets/bedroom.png";
 import clothes from "../../assets/clothes.png";
@@ -15,22 +15,24 @@ import furniture from "../../assets/furniture.png";
 import MultiSlider from "../../components/MultiSlider/MultiSlider";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import ReactPlayer from "react-player/lazy";
 
 const sliderImages = [main, slider_2, slider_3];
 const multiSliderImages = [
-  { image: bed, title: "Bed" },
-  { image: bedroom, title: "Bedroom" },
-  { image: clothes, title: "Clothes" },
-  { image: desk, title: "Desk" },
-  { image: desktop, title: "Desktop" },
-  { image: dinner_table, title: "Dinner Table" },
-  { image: dressing_table, title: "Dressing Table" },
-  { image: furniture, title: "Furniture" },
+  { image: bed },
+  { image: bedroom },
+  { image: clothes },
+  { image: desk },
+  { image: desktop },
+  { image: dinner_table },
+  { image: dressing_table },
+  { image: furniture },
 ];
 
 export default function HomePage() {
-  
+  const [videoURL, setVideoURL] = useState(
+    "https://www.youtube.com/watch?v=Xyc_tKdQJw4"
+  );
   const [productsonsale, setProductOnSale] = useState([]);
 
   const fetcheSaledProducts = async () => {
@@ -44,9 +46,13 @@ export default function HomePage() {
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
     fetcheSaledProducts();
+    return function cleanup() {
+      abortController.abort();
+    };
   }, []);
- 
+
   return (
     <div className="homepage flex-column">
       <section className="homepage_carousel">
@@ -54,7 +60,7 @@ export default function HomePage() {
       </section>
       <MultiSlider multiSliderImages={multiSliderImages} />
       <h2 className="font-red font-h1 upper mt-5">Discounted products</h2>
-      <div className="discounted_products">
+      <div className="discounted_products flex-wrap">
         {productsonsale
           ? productsonsale.map((product, index) =>
               index < 6 ? (
@@ -64,14 +70,24 @@ export default function HomePage() {
           : null}
       </div>
 
-      <h2 className="font-red font-h1 upper mt-5">Our Story</h2>
+      <NavLink to="/shop">
+        <div className="see_all_products mt-5 font-small capitalize">
+          Տեսնել բոլոր մոդելները
+        </div>
+      </NavLink>
+
+      <div className="mt-3 width-100 jsc">
+        <ReactPlayer url={videoURL} width="50%" height="30vw" />
+      </div>
+
+      <h2 className="font-red font-h1 upper mt-5">Մեր պատմությունը</h2>
       <div className="our_story">
         <NavLink to="/about" className="home_our_story_link">
-          Our Story
+          Մեր Պատմությունը
         </NavLink>
       </div>
 
-      <h2 className="font-red font-h1 upper mt-5">New Collections</h2>
+      <h2 className="font-red font-h1 upper mt-5">Հավաքածուներ</h2>
       <div className="our_collections">
         <div className="our_collection"></div>
         <div className="our_collection" id="collection_2"></div>

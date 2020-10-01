@@ -33,9 +33,7 @@
   background-color: transparent;
   font-size: 3vw;
   color: black;
-  &:hover {
-    cursor: pointer;
-  }
+  
 }
 
 .multi-slide-button-left {
@@ -43,4 +41,12 @@
 }
 .multi-slide-button-right {
   @extend %btn-styles;
+}
+
+
+@media only screen and (max-width: 800px){
+  .multi-slider{
+    width: 100% !important;
+  }
+
 }
